@@ -766,28 +766,38 @@
   .hamburger.open .menu-ic { display: none; }
   .hamburger.open .close-ic { display: inline; }
 
+  /*
+   * Mobile overlay — intentionally placed at <body> level in the DOM.
+   * The .nav element has backdrop-filter which creates a new stacking context
+   * and breaks position:fixed on children. Moving the overlay outside avoids this.
+   */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: color-mix(in oklab, var(--bg) 96%, transparent);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    z-index: 200;
+  }
+  .mobile-overlay.open { display: flex; }
+  .mobile-overlay a {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .mobile-overlay a:hover { color: var(--ink-2); }
+
   @media (max-width: 720px) {
     .hamburger { display: inline-grid; }
-    #navLinks {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: color-mix(in oklab, var(--bg) 96%, transparent);
-      backdrop-filter: blur(20px) saturate(140%);
-      -webkit-backdrop-filter: blur(20px) saturate(140%);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
-      z-index: 45;
-    }
-    #navLinks.open { display: flex; }
-    #navLinks.open a {
-      font-size: 22px;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      padding: 10px 0;
-    }
     .canvas-wrap { min-height: 260px; aspect-ratio: 4 / 3; }
     footer.foot { flex-direction: column; gap: 8px; align-items: flex-start; }
   }
@@ -1201,6 +1211,16 @@
 
 <div class="toast" id="toast">Copied to clipboard</div>
 
+<!-- Mobile nav overlay (at body level — outside .nav backdrop-filter stacking context) -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <a href="#about" data-link data-i18n="nav.about">About</a>
+  <a href="#work" data-link data-i18n="nav.work">Work</a>
+  <a href="#skills" data-link data-i18n="nav.stack">Stack</a>
+  <a href="#interests" data-link data-i18n="nav.interests">Interests</a>
+  <a href="#education" data-link data-i18n="nav.education">Education</a>
+  <a href="#contact" data-link data-i18n="nav.contact">Contact</a>
+</div>
+
 <!-- THREE.JS -->
 <script type="importmap">
 {
@@ -1410,19 +1430,25 @@ import * as THREE from 'three';
 (() => {
   // ---------- mobile hamburger
   const menuBtn = document.getElementById('menuBtn');
-  const navMenu = document.getElementById('navLinks');
-  if (menuBtn && navMenu) {
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  function closeMenu() {
+    mobileOverlay?.classList.remove('open');
+    menuBtn?.classList.remove('open');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+    mobileOverlay?.setAttribute('aria-hidden', 'true');
+  }
+  if (menuBtn && mobileOverlay) {
     menuBtn.addEventListener('click', () => {
-      const open = navMenu.classList.toggle('open');
+      const open = mobileOverlay.classList.toggle('open');
       menuBtn.classList.toggle('open', open);
       menuBtn.setAttribute('aria-expanded', String(open));
+      mobileOverlay.setAttribute('aria-hidden', String(!open));
     });
-    navMenu.addEventListener('click', (e) => {
-      if (e.target === navMenu) {
-        navMenu.classList.remove('open');
-        menuBtn.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }
+    mobileOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileOverlay) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 
@@ -1788,7 +1814,7 @@ import * as THREE from 'three';
   // smooth scroll for nav anchors
   links.forEach(l => l.addEventListener('click', (e) => {
     e.preventDefault();
-    if (navMenu) { navMenu.classList.remove('open'); menuBtn?.classList.remove('open'); menuBtn?.setAttribute('aria-expanded', 'false'); }
+    closeMenu();
     document.querySelector(l.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }));
 })();
