@@ -1616,9 +1616,14 @@ import * as THREE from 'three';
     document.querySelector('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   document.getElementById('ctaPrint').addEventListener('click', () => {
+    const curLang = localStorage.getItem('lang') || document.documentElement.getAttribute('lang') || 'en';
+    const cvUrl = curLang === 'es'
+      ? 'https://cv.abiral.me/Abiral_Dahal_CV_ES.pdf'
+      : 'https://cv.abiral.me/Abiral_Dahal_CV.pdf';
+    const fileName = curLang === 'es' ? 'Abiral_Dahal_CV_ES.pdf' : 'Abiral_Dahal_CV.pdf';
     const a = document.createElement('a');
-    a.href = 'Abiral-Dahal-CV.pdf';
-    a.download = 'Abiral-Dahal-CV.pdf';
+    a.href = cvUrl;
+    a.download = fileName;
     document.body.appendChild(a);
     a.click();
     a.remove();
