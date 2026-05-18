@@ -79,6 +79,15 @@
     display: flex; align-items: center; gap: 12px;
     font-size: 14px; letter-spacing: -0.01em;
   }
+  .brand-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .brand-mobile svg {
+    width: 14px;
+    height: 14px;
+  }
   .brand .dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--ink);
@@ -736,7 +745,13 @@
     <div class="brand">
       <span class="dot" aria-hidden="true"></span>
       <strong>Abiral Dahal</strong>
-      <span class="muted" data-i18n="brand.role">— Mobile Engineer</span>
+      <span class="muted brand-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="7" y="2.5" width="10" height="19" rx="2.2"></rect>
+          <path d="M10 6.5h4M11 18h2"></path>
+        </svg>
+        <span data-i18n="brand.role">— Mobile Engineer</span>
+      </span>
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#about" data-link data-i18n="nav.about">About</a>
