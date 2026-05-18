@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f3f1ec"/>
+
+  <!-- Top + bottom border rules -->
+  <line x1="0" y1="10" x2="1200" y2="10" stroke="#1a1a18" stroke-width="1" opacity="0.10"/>
+  <line x1="0" y1="620" x2="1200" y2="620" stroke="#1a1a18" stroke-width="1" opacity="0.10"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="6" height="630" fill="#1a1a18"/>
+
+  <!-- Large decorative "A" — background right side -->
+  <text x="660" y="680" font-family="Georgia,'Times New Roman',serif" font-size="600" font-style="italic" fill="#1a1a18" opacity="0.032" font-weight="400">A</text>
+
+  <!-- ── Name ── -->
+  <text x="82" y="252" font-family="Georgia,'Times New Roman',serif" font-size="112" font-style="italic" fill="#1a1a18" font-weight="400">Abiral</text>
+  <text x="82" y="374" font-family="Georgia,'Times New Roman',serif" font-size="112" font-style="italic" fill="#1a1a18" opacity="0.20" font-weight="400">Dahal.</text>
+
+  <!-- Thin rule -->
+  <line x1="82" y1="412" x2="600" y2="412" stroke="#1a1a18" stroke-width="1" opacity="0.16"/>
+
+  <!-- Job title -->
+  <text x="82" y="460" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-size="27" fill="#5a5853" font-weight="500" letter-spacing="-0.5">Mobile Software Engineer</text>
+
+  <!-- Skills / stack -->
+  <text x="82" y="506" font-family="'Courier New',Courier,monospace" font-size="17" fill="#8a8780" letter-spacing="0.6">Swift · Kotlin · React Native · WebRTC · On-device AI</text>
+
+  <!-- Location pill -->
+  <rect x="82" y="528" width="140" height="34" rx="17" fill="none" stroke="#1a1a18" stroke-width="1" opacity="0.18"/>
+  <text x="152" y="550" text-anchor="middle" font-family="'Courier New',Courier,monospace" font-size="13" fill="#8a8780" letter-spacing="1.5">BILBAO · ES</text>
+
+  <!-- Available indicator -->
+  <circle cx="82" cy="595" r="5" fill="#2dbf6e"/>
+  <text x="98" y="600" font-family="'Courier New',Courier,monospace" font-size="14" fill="#8a8780">Open to talks &amp; consulting</text>
+
+  <!-- URL bottom-right -->
+  <text x="1118" y="600" text-anchor="end" font-family="'Courier New',Courier,monospace" font-size="16" fill="#8a8780" opacity="0.55">abiral.me</text>
+</svg>
