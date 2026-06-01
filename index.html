@@ -312,6 +312,41 @@
     opacity: 0.6;
   }
 
+  /* pulse highlight banner */
+  .pulse-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 24px;
+    margin: 32px 0 0;
+    border: 1px solid var(--rule-strong);
+    border-radius: 14px;
+    background: var(--bg-2);
+    text-decoration: none;
+    color: inherit;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .pulse-banner:hover { background: var(--chip); border-color: var(--ink-3); }
+  .pulse-banner-left { display: flex; align-items: center; gap: 14px; }
+  .pulse-banner-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green, #2dbf6e);
+    box-shadow: 0 0 0 4px rgba(45,191,110,0.15);
+    flex-shrink: 0;
+  }
+  .pulse-banner-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+  .pulse-banner-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .pulse-banner-desc { font-size: 13px; color: var(--ink-2); margin-top: 1px; }
+  .pulse-banner-cta {
+    font-size: 12px; font-weight: 500; color: var(--ink-2);
+    display: flex; align-items: center; gap: 5px;
+    white-space: nowrap; flex-shrink: 0;
+    transition: color .2s ease;
+  }
+  .pulse-banner:hover .pulse-banner-cta { color: var(--ink); }
+  @media (max-width: 540px) { .pulse-banner-desc { display: none; } }
+
   /* section heading */
   section {
     padding: 80px 0 24px;
@@ -955,6 +990,22 @@
     </div>
   </header>
 
+  <!-- PULSE BANNER -->
+  <a class="pulse-banner" href="/pulse">
+    <div class="pulse-banner-left">
+      <div class="pulse-banner-dot"></div>
+      <div>
+        <div class="pulse-banner-label">New Project</div>
+        <div class="pulse-banner-title">Pulse — On-Device Wellness LLM</div>
+        <div class="pulse-banner-desc">A 3.1B-parameter model fine-tuned from Qwen2.5-3B. Runs fully on-device via Core ML — no server, no API keys.</div>
+      </div>
+    </div>
+    <div class="pulse-banner-cta">
+      Learn more
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </div>
+  </a>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="sec-head">
@@ -1121,6 +1172,15 @@
           <div class="int-chips">
             <span>Open WebUI</span><span>RAG</span><span>Whisper.cpp</span><span>Tool-use</span>
           </div>
+        </article>
+        <article class="int-card">
+          <div class="int-tag">05 · Project</div>
+          <h4>Pulse — On-Device Wellness LLM</h4>
+          <p>A 3.1B-parameter wellness coaching model fine-tuned from Qwen2.5-3B. Runs entirely on-device via Core ML on iPhone — no server, no API keys, no data leaving the device.</p>
+          <div class="int-chips">
+            <span>Core ML · INT4</span><span>GGUF · Q4_K_M</span><span>Qwen2.5-3B</span><span>Fine-tuning</span>
+          </div>
+          <a href="/pulse" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;color:var(--ink-2);text-decoration:none;transition:color .2s ease;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-2)'">Read more →</a>
         </article>
       </div>
     </div>
